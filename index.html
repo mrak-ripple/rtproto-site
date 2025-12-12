@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RT Prototype | Rapid Fabrication & Engineering – Raleigh, NC</title>
+  <meta name="description" content="Quick-turn CNC machining, sheet metal, welding, 3D scanning, casting, and engineering in the Raleigh, NC area." />
+
+  <style>
+    :root {
+      --bg: #f4f4f7;
+      --bg-alt: #ffffff;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.08);
+      --text: #0f172a;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --radius-xl: 18px;
+      --radius-2xl: 26px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
+      --max-width: 1120px;
+    }
+
+    .contact-info-card .card-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .contact-info-card .contact-note {
+      margin-top: auto; /* pushes it to the bottom */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+      "Segoe UI", sans-serif;
+
+      background:
+      linear-gradient(90deg, rgba(0,0,0,0.03) 4px, transparent 4px),
+      linear-gradient(180deg, rgba(0,0,0,0.03) 4px, transparent 4px),
+      #f4f4f7;
+
+      background-size: 40px 40px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 24px 16px 64px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: var(--max-width);
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #ffffff 0, #bfdbfe 20%, #2563eb 55%, #1e293b 90%);
+      box-shadow: 0 0 18px rgba(37, 99, 235, 0.7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 38% 16%;
+      border-radius: 999px;
+      border: 2px solid rgba(15, 23, 42, 0.3);
+      border-top-color: transparent;
+      border-left-color: transparent;
+      transform: rotate(-35deg);
+    }
+
+    .brand-text-main {
+      font-weight: 650;
+      letter-spacing: 0.08em;
+      font-size: 0.92rem;
+      text-transform: uppercase;
+    }
+
+    .brand-text-sub {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.86rem;
+    }
+
+    nav a {
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      transition: color 0.18s ease, background 0.18s ease, transform 0.15s ease;
+    }
+
+    nav a:hover {
+      color: var(--text);
+      background: rgba(148, 163, 184, 0.18);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #2563eb, #22c55e);
+      color: #f9fafb;
+      font-weight: 600;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.3);
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+      margin-bottom: 42px;
+      align-items: stretch;
+    }
+
+    .hero-main {
+      background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), #ffffff 60%);
+      border-radius: var(--radius-2xl);
+      padding: 28px 45px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      margin: 0 auto;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: var(--muted);
+      font-size: 0.75rem;
+      margin-bottom: 14px;
+    }
+
+    .hero-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.3);
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 2.7vw, 2.5rem);
+      font-weight: 720;
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(to right, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 34rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .hero-tag {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #eef2ff;
+      border: 1px solid #e5e7eb;
+      font-size: 0.75rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #2563eb, #22c55e);
+      color: #f9fafb;
+      font-weight: 640;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.3);
+    }
+
+    .btn-ghost {
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--muted);
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+
+    .btn-ghost:hover {
+      background: #e5e7eb;
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .hero-note {
+      margin-top: 14px;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .hero-note strong {
+      color: #111827;
+      font-weight: 500;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 40px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .section-kicker {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* SERVICES GRID */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    /* Base card style (NO global hover effects) */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-xl);
+      padding: 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    /* Hover behavior ONLY for cards inside .services-grid */
+    .services-grid .card {
+      transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+    }
+
+    .services-grid .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.14);
+      border-color: rgba(37, 99, 235, 0.4);
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 2;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .card-accent {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, var(--accent-soft), transparent 55%);
+      opacity: 1;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card-image {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      z-index: 1;
+    }
+
+    /* Only capability cards fade to image on hover */
+    .services-grid .card:hover .card-image {
+      opacity: 1;
+    }
+
+    .services-grid .card:hover .card-inner {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+
+    .card-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .card h3 {
+      font-size: 0.98rem;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    .card p {
+      font-size: 0.83rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .card-list {
+      list-style: none;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: grid;
+      gap: 2px;
+    }
+
+    .card-list li::before {
+      content: "• ";
+      color: #2563eb;
+    }
+
+    /* Engineering / Contact Grids */
+    .process-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .brand-logo{
+      width: clamp(130px, 18vw, 200px);
+      height: auto;
+      display: block;
+    }
+
+    /* Contact form styling */
+    form {
+      display: grid;
+      gap: 10px;
+      font-size: 0.86rem;
+    }
+
+    label {
+      display: grid;
+      gap: 4px;
+    }
+
+    input,
+    textarea,
+    select {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      background: #ffffff;
+      padding: 7px 12px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.86rem;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    textarea {
+      border-radius: 14px;
+      min-height: 80px;
+      resize: vertical;
+      padding-top: 8px;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.4);
+      background: #ffffff;
+    }
+
+    .input-help {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .contact-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .contact-note strong {
+      color: #111827;
+    }
+
+    /* --- Contact form success state (animated + centered) --- */
+    .contact-form-card .card-inner {
+      position: relative;
+    }
+
+    /* Hide success by default */
+    .form-success {
+      display: none;
+      opacity: 0;
+      transform: translateY(8px);
+      text-align: center;
+      padding: 18px 16px;
+    }
+
+    /* When the card is in "success" mode */
+    .contact-form-card.is-success .card-inner {
+      min-height: 340px;              /* keeps the card feeling substantial */
+      display: flex;
+      align-items: center;            /* vertical center */
+      justify-content: center;        /* horizontal center */
+    }
+
+    .contact-form-card.is-success form {
+      display: none;
+    }
+
+    .contact-form-card.is-success .form-success {
+      display: block;
+      animation: successIn 420ms ease forwards;
+    }
+
+    /* Styled badge + content */
+    .form-success-badge {
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 12px;
+      background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(34,197,94,0.12));
+      border: 1px solid rgba(148,163,184,0.55);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+      color: #16a34a; /* checkmark color */
+    }
+
+    .form-success-badge svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .form-success-title {
+      margin-bottom: 6px;
+      font-size: 1.05rem;
+      color: #111827;
+    }
+
+    .form-success-text {
+      margin: 0 auto 12px;
+      max-width: 34ch;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .form-success-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(255,255,255,0.9);
+      color: #111827;
+      font-size: 0.85rem;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .form-success-link:hover {
+      transform: translateY(-1px);
+      background: #e5e7eb;
+    }
+
+    /* Subtle entrance animation */
+    @keyframes successIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Honeypot: visually hidden but still in DOM */
+    .hp-field {
+      position: absolute !important;
+      left: -9999px !important;
+      width: 1px !important;
+      height: 1px !important;
+      overflow: hidden !important;
+    }
+
+    /* Error state (matches success styling) */
+    .form-error {
+      display: none;
+      opacity: 0;
+      transform: translateY(8px);
+      text-align: center;
+      padding: 18px 16px;
+    }
+
+    .contact-form-card.is-error .card-inner {
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-form-card.is-error form {
+      display: none;
+    }
+
+    .contact-form-card.is-error .form-error {
+      display: block;
+      animation: successIn 420ms ease forwards; /* reuse same animation */
+    }
+
+    .form-error-badge {
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 12px;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.10);
+      color: #dc2626;
+      font-weight: 900;
+      font-size: 1.3rem;
+    }
+
+    .form-error-title {
+      margin-bottom: 6px;
+      font-size: 1.05rem;
+      color: #111827;
+    }
+
+    .form-error-text {
+      margin: 0 auto 12px;
+      max-width: 40ch;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .form-error-text a {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .form-error-btn {
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(255,255,255,0.9);
+      color: #111827;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .form-error-btn:hover {
+      transform: translateY(-1px);
+      background: #e5e7eb;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding-top: 16px;
+      margin-top: 18px;
+      font-size: 0.76rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+    }
+
+    footer a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .process-grid,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .hero-main {
+        padding: 22px 18px;
+      }
+
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="shell">
+      <header>
+        <div class="brand">
+          <img src="images/logo.png" alt="RT Prototype Logo" class="brand-logo" />
+        </div>
+        <nav>
+          <a href="#services">Capabilities</a>
+          <a href="#engineering">Engineering</a>
+          <a href="#contact" class="nav-cta">Request a quote</a>
+        </nav>
+      </header>
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-main">
+          <div class="hero-pill">
+            <span class="hero-pill-dot"></span>
+            <span>Quick-turn fabrication with engineering support</span>
+          </div>
+          <h1 class="hero-title">
+            Fabrication &amp; Engineering in the <span>Research Triangle</span>.
+          </h1>
+          <p class="hero-subtitle">
+            Partner with someone who understands how to make your part work.
+          </p>
+
+          <div class="hero-tags">
+            <div class="hero-tag">CNC machining</div>
+            <div class="hero-tag">Sheet cutting &amp; bending</div>
+            <div class="hero-tag">MIG &amp; TIG welding</div>
+            <div class="hero-tag">3D scanning</div>
+            <div class="hero-tag">Testing</div>
+            <div class="hero-tag">Jig and Fixture</div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn-primary">
+              <span>Start a project</span>
+              <span>→</span>
+            </a>
+            <a href="#services" class="btn-ghost">
+              <span>View capabilities</span>
+            </a>
+          </div>
+
+          <p class="hero-note">
+            <strong>Serving Raleigh, Durham, Cary &amp; the Triangle.</strong>
+            Small-batch &amp; prototype work with fast turnaround.
+          </p>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services">
+        <div class="section-header">
+          <h2 class="section-title">Capabilities</h2>
+        </div>
+
+        <div class="services-grid">
+          <article class="card" data-image="images/cnc.jpg">
+            <div class="card-accent"></div>
+            <div class="card-inner">
+              <div class="card-label">Machining</div>
+              <h3>CNC machining</h3>
+              <p>Quick-turn milled parts for brackets, housings, plates, and fixtures.</p>
+              <ul class="card-list">
+                <li>Metals and plastics</li>
+                <li>Fixturing and workholding</li>
+                <li>Rework existing parts</li>
+              </ul>
+            </div>
+            <div class="card-image"></div>
+          </article>
+
+          <article class="card" data-image="images/sheet-metal.jpg">
+            <div class="card-accent"></div>
+            <div class="card-inner">
+              <div class="card-label">Sheet metal</div>
+              <h3>Cutting &amp; bending</h3>
+              <p>Brackets, panels and enclosures.</p>
+              <ul class="card-list">
+                <li>Sheet cutting and forming</li>
+                <li>Metals</li>
+                <li>Custom forming tools</li>
+              </ul>
+            </div>
+            <div class="card-image"></div>
+          </article>
+
+          <article class="card" data-image="images/welding.jpg">
+            <div class="card-accent"></div>
+            <div class="card-inner">
+              <div class="card-label">Welding</div>
+              <h3>MIG &amp; TIG welding</h3>
+              <p>Assemblies, brackets, and repairs.</p>
+              <ul class="card-list">
+                <li>Steel, stainless, and aluminum</li>
+                <li>Prototype and low-volume assemblies</li>
+              </ul>
+            </div>
+            <div class="card-image"></div>
+          </article>
+
+          <article class="card" data-image="images/laser-engraving.jpg">
+            <div class="card-accent"></div>
+            <div class="card-inner">
+              <div class="card-label">Laser Cutting</div>
+              <h3>Plastic cutting &amp; metal engraving</h3>
+              <p>Panels, labels, and cosmetic details that still respect manufacturability.</p>
+              <ul class="card-list">
+                <li>Plastic panels cut to size</li>
+                <li>Engraving for plastics and metals marks</li>
+              </ul>
+            </div>
+            <div class="card-image"></div>
+          </article>
+
+          <article class="card" data-image="images/casting.jpg">
+            <div class="card-accent"></div>
+            <div class="card-inner">
+              <div class="card-label">Prototyping</div>
+              <h3>Plastic casting &amp; low-volume parts</h3>
+              <p>Support for simple casting and short-run part workflows.</p>
+              <ul class="card-list">
+                <li>Small-run, proof-of-concept components</li>
+                <li>Assistance with design for manufacturing</li>
+                <li>Try it before committing to a mold</li>
+              </ul>
+            </div>
+            <div class="card-image"></div>
+          </article>
+
+          <article class="card" data-image="images/scanning.jpg">
+            <div class="card-accent"></div>
+            <div class="card-inner">
+              <div class="card-label">3D scanning</div>
+              <h3>3D scanning &amp; reverse engineering</h3>
+              <p>Capture real-world geometry when you don’t have a drawing.</p>
+              <ul class="card-list">
+                <li>Prepare and scan existing parts</li>
+                <li>Create reference models for CAD design</li>
+                <li>Retrofit parts and tight fitting assemblies</li>
+              </ul>
+            </div>
+            <div class="card-image"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ENGINEERING -->
+      <section id="engineering">
+        <div class="section-header">
+          <h2 class="section-title">Engineering &amp; CAD</h2>
+        </div>
+
+        <div class="process-grid">
+          <div class="card">
+            <div class="card-inner">
+              <h3 style="margin-bottom: 6px;">Engineering with whole process in mind</h3>
+
+              <p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 10px;">
+                Work with someone who lives on both sides of the process:
+                designing parts <em>and</em> making them.
+              </p>
+
+              <ul class="card-list">
+                <li>Clean, well-structured CAD that’s easy to revise</li>
+                <li>Designs that are manufacturable from day one</li>
+                <li>Design verification and validation support</li>
+                <li>Tolerancing that keeps parts accurate and affordable</li>
+              </ul>
+
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <h3 style="margin-bottom: 6px;">Typical projects</h3>
+
+              <ul class="card-list" style="margin-bottom: 12px;">
+                <li>One-off mounts, brackets, and adapter plates</li>
+                <li>Prototype assemblies requiring quick iteration</li>
+                <li>Lifetime testing rigs</li>
+                <li>Modifying existing parts</li>
+                <li>Small fixtures and jigs for in-house processes</li>
+                <li>Reverse-engineered parts for obsolete equipment</li>
+                <li>CAD cleanup, redesigns, or manufacturability reviews</li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="section-header">
+          <h2 class="section-title">Start a project</h2>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card contact-form-card">
+            <div class="card-inner">
+              <!-- Replace action/mailto with your actual email or form endpoint -->
+              <form id="project-form"
+                    action="https://formspree.io/f/TESTING"
+                    method="POST">
+
+                <label>
+                  Name
+                  <input type="text" name="name" placeholder="Your name" required />
+                </label>
+
+                <label>
+                  Email
+                  <input type="email" name="email" placeholder="you@company.com" required />
+                </label>
+
+                <label>
+                  Company / team (optional)
+                  <input type="text" name="company" placeholder="Company, team, or project" />
+                </label>
+
+                <label class="hp-field" aria-hidden="true" tabindex="-1">
+                  Website
+                  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+                </label>
+
+                <label>
+                  What do you need made?
+                  <textarea name="project" placeholder="Briefly describe your part, quantity, and goals." required></textarea>
+                  <span class="input-help">
+                    Materials, rough sizes, and whether you have a CAD file or just a sketch.
+                  </span>
+                </label>
+
+                <label>
+                  Timeline
+                  <select name="timeline">
+                    <option value="flexible">Flexible – just need a solid date</option>
+                    <option value="soon">Soon – within 2–3 weeks</option>
+                    <option value="rush">Rush – under 1 week (if possible)</option>
+                  </select>
+                </label>
+
+                <button type="submit" class="btn-primary" style="justify-content: center; margin-top: 4px;">
+                  Send project details
+                </button>
+              </form>
+
+              <div id="form-success" class="form-success" aria-live="polite" tabindex="-1">
+                <div class="form-success-badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+
+                <h3 class="form-success-title">Success</h3>
+
+                <p class="form-success-text">
+                  We’ll get back to you within 1 business day.
+                </p>
+
+              </div>
+
+              <div id="form-error" class="form-error" aria-live="polite" tabindex="-1">
+                <div class="form-error-badge" aria-hidden="true">!</div>
+                <h3 class="form-error-title">Couldn’t send your message</h3>
+                <p class="form-error-text">
+                  Please try again, or email us directly at sales@rtproto.com
+                </p>
+                <button type="button" class="form-error-btn" id="form-try-again">
+                  Try again
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card contact-info-card">
+            <div class="card-inner">
+              <h3 style="margin-bottom: 6px;">What to include</h3>
+              <ul class="card-list" style="margin-bottom: 8px;">
+                <li>Brief description of the part</li>
+                <li>Any existing CAD, sketches, or photos</li>
+                <li>Approximate quantities and materials</li>
+                <li>Deadlines and constraints</li>
+              </ul>
+
+              <p class="contact-note" style="margin-top: 4px;">
+                After receiving your message, you’ll hear back within 1 business day.
+              </p>
+              <p class="contact-note" style="margin-top: 4px;">
+                Alternatively, you may email us directly at sales@rtproto.com
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div>© <span id="year"></span> RT Proto – Raleigh, NC</div>
+
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    document.querySelectorAll(".services-grid .card").forEach(card => {
+      const url = card.getAttribute("data-image");
+      const img = card.querySelector(".card-image");
+      if (url && img) img.style.backgroundImage = `url("${url}")`;
+    });
+  </script>
+
+  <script>
+    const form = document.getElementById("project-form");
+    const card = document.querySelector(".contact-form-card");
+    const success = document.getElementById("form-success");
+    const errorBox = document.getElementById("form-error");
+    const tryAgainBtn = document.getElementById("form-try-again");
+
+    const TEST_MODE = false;
+
+    function showSuccess() {
+      card.classList.remove("is-error");
+      card.classList.add("is-success");
+      success.focus?.();
+    }
+
+    function showError() {
+      card.classList.remove("is-success");
+      card.classList.add("is-error");
+      errorBox.focus?.();
+    }
+
+    function resetFormUI() {
+      card.classList.remove("is-success", "is-error");
+    }
+
+    tryAgainBtn?.addEventListener("click", () => {
+      resetFormUI();
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const btn = form.querySelector('button[type="submit"]');
+      const originalText = btn ? btn.textContent : "";
+
+      const restoreBtn = () => {
+        if (!btn) return;
+        btn.disabled = false;
+        btn.textContent = originalText;
+      };
+
+      // --- Guards (early exits) ---
+
+      // Honeypot check: block submission entirely
+      const hp = form.querySelector('input[name="_gotcha"]');
+      if (hp && hp.value.trim() !== "") {
+        showSuccess();   // optional: or just return
+        form.reset();
+        restoreBtn();
+        return;
+      }
+
+      // --- Now disable + proceed ---
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = "Sending…";
+      }
+
+      if (TEST_MODE) {
+        setTimeout(() => {
+          showSuccess();
+          form.reset();
+          restoreBtn();
+        }, 500);
+        return;
+      }
+
+      try {
+        const data = new FormData(form);
+
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: data,
+          headers: { Accept: "application/json" }
+        });
+
+        const result = await response.json().catch(() => ({}));
+
+        if (response.ok && result.ok === true) {
+          showSuccess();
+          form.reset();
+        } else {
+          showError();
+        }
+      } catch (err) {
+        showError();
+      } finally {
+        restoreBtn();
+      }
+    });
+  </script>
+
+</body>
+</html>
